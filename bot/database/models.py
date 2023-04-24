@@ -3,6 +3,7 @@ from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
+
 class ScheduleEntry(Base):
     __tablename__ = "schedule_entry"
 
@@ -14,11 +15,13 @@ class ScheduleEntry(Base):
     weekday_id = Column('weekday_id', Integer, ForeignKey('weekday.id'))
     weekday = relationship("Weekday", back_populates="schedule_entries")
 
+
 class Subject(Base):
     __tablename__ = "subject"
 
     subject_code = Column('subject_code', Integer, primary_key=True)
     name = Column('subject_name', String)
+
 
 class Weekday(Base):
     __tablename__ = "weekday"
@@ -26,6 +29,7 @@ class Weekday(Base):
     id = Column('id', Integer, primary_key=True)
     name = Column('weekday', String)
     schedule_entries = relationship("ScheduleEntry", back_populates="weekday")
+
 
 class SubjectDuration(Base):
     __tablename__ = "subject_duration"
