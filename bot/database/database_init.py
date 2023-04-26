@@ -2,6 +2,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 from .models import Subject, Weekday, SubjectDuration
 
+
 async def create_subject_duration(session_maker: sessionmaker):
     async with session_maker() as session:
         result = await session.execute(text('SELECT EXISTS (SELECT 1 FROM subject_duration)'))
@@ -12,8 +13,9 @@ async def create_subject_duration(session_maker: sessionmaker):
             for start, end in zip(start_times, end_times):
                 duration = SubjectDuration(start_time=start, end_time=end)
                 session.add(duration)
-            
+
             await session.commit()
+
 
 async def create_weekdays(session_maker: sessionmaker):
     async with session_maker() as session:
@@ -26,6 +28,7 @@ async def create_weekdays(session_maker: sessionmaker):
                 session.add(new_day)
 
             await session.commit()
+
 
 async def init_database(session_maker: sessionmaker):
     await create_weekdays(session_maker=session_maker)

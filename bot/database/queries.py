@@ -21,3 +21,14 @@ async def get_schedule(weekday: str, session_maker: sessionmaker):
         schedule_entries = results.fetchall()
 
     return schedule_entries
+
+
+async def get_all_subjects(session_maker: sessionmaker):
+    async with session_maker() as session:
+        stmt = select(
+            Subject.name
+        ).distinct()
+        result = await session.execute(stmt)
+        subjects_entries = result.fetchall()
+
+    return subjects_entries

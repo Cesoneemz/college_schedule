@@ -1,5 +1,5 @@
 generate:
-		alembic revision --n="$(NAME)" --autogenerate
+		alembic revision --m="$(NAME)" --autogenerate
 
 migrate:
 		alembic upgrade head

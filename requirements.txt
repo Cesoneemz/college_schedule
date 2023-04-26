@@ -23,7 +23,6 @@ multidict==6.0.4
 pydantic==1.10.7
 python-dotenv==1.0.0
 pytz==2023.3
-pywebio==1.8.2
 SQLAlchemy==2.0.9
 tornado==6.3.1
 typing_extensions==4.5.0

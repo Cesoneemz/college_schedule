@@ -8,19 +8,20 @@ class ScheduleEntry(Base):
     __tablename__ = "schedule_entry"
 
     id = Column('id', Integer, primary_key=True, unique=True, autoincrement=True)
-    subject_code = Column('subject_id', Integer, ForeignKey('subject.subject_code', ondelete='CASCADE'))
+    subject_code = Column('subject_id', Integer, ForeignKey('subject.subject_code', ondelete='CASCADE'), nullable=True)
     subject = relationship("Subject")
-    duration_id = Column('duration_id', Integer, ForeignKey('subject_duration.id'))
+    duration_id = Column('duration_id', Integer, ForeignKey('subject_duration.id'), nullable=True)
     duration = relationship("SubjectDuration")
-    weekday_id = Column('weekday_id', Integer, ForeignKey('weekday.id'))
+    weekday_id = Column('weekday_id', Integer, ForeignKey('weekday.id'), nullable=True)
     weekday = relationship("Weekday", back_populates="schedule_entries")
+    auditory_number = Column('auditory_number', String, nullable=True)
 
 
 class Subject(Base):
     __tablename__ = "subject"
 
     subject_code = Column('subject_code', Integer, primary_key=True)
-    name = Column('subject_name', String)
+    name = Column('name', String)
 
 
 class Weekday(Base):
